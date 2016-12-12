@@ -45,13 +45,14 @@ public class TabXsdTest
 	@Test
 	public void testSchemaExamples () throws IOException
 	{
-		Validator v = Validator.forLanguage ( Languages.W3C_XML_SCHEMA_NS_URI );
-		v.setSchemaSource ( new StreamSource ( Resources.getResource ( "tab_parser.xsd" ).openStream () ) );
 
 		for ( String inResName: new String[] { 
-			"test_tab_spec_1.xml"
+			"test_tab_spec_1.xml",
+			"test_biogrid_yeast_tab_spec.xml"
 		})
 		{
+			Validator v = Validator.forLanguage ( Languages.W3C_XML_SCHEMA_NS_URI );
+			v.setSchemaSource ( new StreamSource ( Resources.getResource ( "tab_parser.xsd" ).openStream () ) );
 			ValidationResult r = v.validateInstance ( 
 				new StreamSource ( Resources.getResource ( inResName ).openStream () ) 
 			);
